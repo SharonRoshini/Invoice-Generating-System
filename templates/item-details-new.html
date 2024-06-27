@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href="{{url_for('static', filename='css/view-invoice.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<body style="background-color: #f5f7fa;">
+    <div class="container" style="margin-top: 5%;">
+        <div class="d-flex justify-content-center">
+            <h3>Item Details</h3>
+        </div>
+        <form method="POST">
+            <section class="intro">
+                <div style="background-color: #f5f7fa;">
+                    <div class="d-flex align-items-center">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body p-0">
+                                            <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                                                style="position: relative; max-height: 400px;">
+                                                <table class="table table-striped mb-0">
+                                                    <thead style="background-color: #002d72;">
+                                                        <tr>
+                                                            <th scope="col">S No.</th>
+                                                            <th scope="col">Item ID</th>
+                                                            <th scope="col">Name</th>
+                                                            <th scope="col">Price</th>
+                                                            <th scope="col">Edit</th>
+                                                            <th scope="col">Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for item in items %}
+                                                        <tr>
+                                                            <td>{{loop.index}}</td>
+                                                            <td>{{item.item_id}}</td>
+                                                            <td>{{item.name}}</td>
+                                                            <td>{{item.price}}</td>
+                                                            <td><a href="/edit-item/{{item._id}}" class="btn"><i
+                                                                        style="color: black;" class="fa fa-pencil-alt"
+                                                                        aria-hidden="true"></i>
+                                                                </a></td>
+                                                            <td><a href="/delete-item/{{item._id}}" class="btn"><i
+                                                                        style="color: black;" class="fa fa-trash"
+                                                                        aria-hidden="true"></i>
+                                                                </a></td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+        <br>
+        <br>
+        <div class="d-flex justify-content-around">
+            <a href="/new-item" class="btn btn-primary">Add Item</a>
+            <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

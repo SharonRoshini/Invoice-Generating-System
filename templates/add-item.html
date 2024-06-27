@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Employee Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="item_card">
+                <div class="d-flex justify-content-center">
+                    <form method="post">
+                        <table class="table table-hover" id="myTable">
+                            <thead>
+                                <th>SNo.</th>
+                                <th>Item ID</th>
+                                <th>Item Name</th>
+                                <th>Rate per Unit</th>
+                                <th>Quantity</th>
+                                <th>Select</th>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                <tr>
+                                    <td>{{loop.index}}</td>
+                                    <td>{{item.item_id}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td id="price">{{item.price}}</td>
+                                    <td><input type="number" name="quantity" step="1" min="0"></td>
+                                    <td><input type="checkbox" name="chkbox" id="" value={{item.item_id}}></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <!-- {% if not user_exists %}
+                        <div style="position: absolute;">
+                            <h5>Invalid Credentials!</h5>
+                        </div>
+                        {% endif %} -->
+                        <div class="d-flex justify-content-center mt-5 login_container">
+                            <button type="submit" name="button" class="btn login_btn">Add Item</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script>
+        // function funcHandler() {
+        //     var q = document.getElementById('quantity').value
+        //     var price = $("#myTable #price").text();
+
+        //     $('#amount').html(q)
+        //     console.log(price)
+        // }
+    </script>
+</body>
+
+</html>

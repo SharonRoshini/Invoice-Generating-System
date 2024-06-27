@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Invoice</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- <div class="container w-auto" style="left: 50%">
+        <div class="popup">
+            <div class="d-flex justify-content-center" style="position: absolute;">
+                <h3>Enter Item Details</h3>
+            </div>
+        </div>
+    </div> -->
+    <div class="container" style="padding-top: 50px;">
+        <div class="d-flex justify-content-center flex-column">
+            <div class="d-flex justify-content-center" style="color: white;">
+                <h2>Create New Invoice</h2>
+            </div>
+            <form method="POST">
+                {% if flag %}
+                
+                <div class="user_card">
+                    <div class="d-flex justify-content-center">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Customer Name</td>
+                                    <td>{{user_data.customer_name}}</td>
+                                    <td>Payment Mode</td>
+                                    <td>{{user_data.payment}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Customer Address</td>
+                                    <td>{{user_data.customer_address}}</td>
+                                    <td>Station</td>
+                                    <td>{{user_data.station}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Mode of Dispatch</td>
+                                    <td>{{user_data.mode_of_dispatch}}</td>
+                                    <td>Transporter</td>
+                                    <td>{{user_data.transporter}}</td>
+                                </tr>
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% elif not flag %}
+                <div class="user_card">
+                    <div class="d-flex justify-content-center">
+                        
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Customer Name</td>
+                                    <td><input type="text" name="cust_name"></td>
+                                    <td>Payment Mode</td>
+                                    <td><input type="text" name="payment"></td>
+                                </tr>
+                                <tr>
+                                    <td>Customer Address</td>
+                                    <td><textarea type="text" name="cust_address"></textarea></td>
+                                    <td>Station</td>
+                                    <td><input type="text" name="station"></td>
+                                </tr>
+                                <tr>
+                                    <td>Mode of Dispatch</td>
+                                    <td><input type="text" name="mode_of_dispatch"></td>
+                                    <td>Transporter</td>
+                                    <td><input type="text" name="transporter" id=""></td>
+                                </tr>
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="user_card mt-2">
+                    <div class="d-flex justify-content-center">
+                        <table class="table">
+                            <thead>
+                                <th>SNo.</th>
+                                <th>Item ID</th>
+                                <th>Item Name</th>
+                                <th>Rate per Unit</th>
+                                <th>Quantity</th>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                <tr>
+                                    <td>{{loop.index}}</td>
+                                    <td>{{item.item_id}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.price}}</td>
+                                    <td>{{item.quantity}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><br><br>
+                {% if flag %}
+                <div>
+                    <a class="btn btn-primary" href="\dashboard" type="submit">Dashboard</a>
+                </div>
+                <!-- <div>
+                    <button class="btn btn-danger" onclick="window.print()">Print Invoice</button>
+                </div> -->
+                {% elif not flag %}
+                <div>
+                    <button class="btn btn-primary" type="submit">Add Item</button>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
